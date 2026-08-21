@@ -1,0 +1,15 @@
+# --- Face match API (insightface_match.py + server_insightface.py) ---
+insightface>=0.7.3
+onnxruntime>=1.17.0
+opencv-python>=4.9.0
+numpy>=1.26.0
+pymupdf>=1.24.0        # PDF -> image conversion for ID documents
+ 
+# --- API server ---
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+python-dotenv>=1.0.0
+ 
+# --- only needed if you keep using client_example.py to test the API ---
+requests>=2.31.0
