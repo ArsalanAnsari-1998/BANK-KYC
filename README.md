@@ -132,7 +132,12 @@ Double-check `git status` before your first commit — if `.env` or any test ima
   in production.
 - The largest detected face in each image is used (guards against false matches from
   logos/holograms on ID documents).
-- This is a POC: no auth, no rate limiting, no persistence of uploaded images (files are
+- This is a PoC: no auth, no rate limiting, no persistence of uploaded images (files are
   written to a temp dir per request and deleted immediately after). Add auth + input
   size limits before exposing this outside localhost.
 - Biometric data handling/retention needs a compliance review before any real deployment.
+
+## Next Steps (Moving to a Prototype)
+To scale this this PoC into a full prototype, future updates will include:
+- Adding a simple UI for image uploads.
+- Implementing liveness detection to prevent spoofing attacks.
