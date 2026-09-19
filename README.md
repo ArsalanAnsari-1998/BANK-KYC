@@ -148,7 +148,9 @@ The API base URL defaults to `http://127.0.0.1:8000` and can be changed from the
   size limits before exposing this outside localhost.
 - Biometric data handling/retention needs a compliance review before any real deployment.
 
+## Step Completed
+- Added a simple UI for image uploads.
+
 ## Next Steps (Moving to a Prototype)
 To scale this this PoC into a full prototype, future updates will include:
-- Adding a simple UI for image uploads.
 - Implementing liveness detection to prevent spoofing attacks.
