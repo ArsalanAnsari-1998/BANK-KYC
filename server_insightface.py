@@ -11,6 +11,7 @@ import time
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, File, UploadFile, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from insightface_match import compare_faces, get_app
@@ -26,6 +27,16 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Face Match Verification API (InsightFace)", lifespan=lifespan)
+
+# Allows the browser-based UI (index.html, opened as a local file or served on a
+# different port) to call this API. Tighten allow_origins before deploying anywhere
+# beyond localhost.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")

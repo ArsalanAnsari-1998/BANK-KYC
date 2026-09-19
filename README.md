@@ -98,6 +98,7 @@ python client_example.py --selfie selfie.jpg --id-doc id_card.pdf
 | `__pycache__/`, `*.pyc`, `venv/`   | Generated / environment-specific, not code.                      |
 | `.insightface/`, `**/models/`      | Model weights are auto-downloaded on first run — large binaries, don't belong in git. |
 | `*.jpg`, `*.jpeg`, `*.png`, `*.pdf`, `test_images/`, `sample_data/` | **Biometric/PII test data** (selfies, ID docs) used while testing — never commit real face or ID images to a repo, public or private. |
+| Browser `localStorage` (API base URL, thresholds) | Stored client-side only, in the user's own browser — not part of the repo, nothing to gitignore, just noting it for anyone reviewing the code. |
 
 If you need to keep a non-sensitive image (e.g. a diagram in the README), either add it under an explicit exception in `.gitignore` (e.g. `!docs/*.png`) or rename it into a folder you control.
 
@@ -124,6 +125,16 @@ gh repo create <repo-name> --private --source=. --remote=origin --push
 ```
 
 Double-check `git status` before your first commit — if `.env` or any test images show up as tracked, `.gitignore` won't retroactively untrack files that were already committed. In that case run `git rm --cached .env` (and similarly for any image files) before committing.
+
+## Web UI
+
+A lightweight browser UI is included (`index.html`) — no build step, no separate server needed to host it.
+
+1. Start the API as above.
+2. Open `index.html` directly in a browser (double-click it, or `start index.html` on Windows).
+3. Drop in a selfie + ID document, adjust thresholds if needed, and run the check.
+
+The API base URL defaults to `http://127.0.0.1:8000` and can be changed from the UI itself if you're running the server elsewhere. CORS is enabled on the server (`server_insightface.py`) specifically so this page can call it from a different origin.
 
 ## Notes for whoever consumes this API
 
